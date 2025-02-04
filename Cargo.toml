@@ -10,10 +10,11 @@ criterion = "0.5.1"
 rand = "0.8.5"
 halo2curves = "0.8.0"
 rand_xorshift = "0.3"
+crrl = {version = "0.9.0", features = ["modint256"]}
 
 [[bench]]
 name = "bench_field"
 harness = false
 
 [features]
-asm = ["halo2curves/asm", "ark-ff/asm", "ark-bls12-377/asm"]
+asm = ["halo2curves/asm", "ark-ff/asm", "ark-bls12-377/asm", "crrl/gfb254_x86clmul"]
