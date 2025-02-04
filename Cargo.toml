@@ -4,8 +4,10 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-ark-ff = { git = "https://github.com/distributed-lab/algebra.git", branch = "master"}
+ark-ff = { git = "https://github.com/distributed-lab/algebra.git", branch = "master" }
+ark-bls12-377 = { git = "https://github.com/distributed-lab/algebra.git", branch = "master" }
 criterion = "0.5.1"
+rand = "0.8.5"
 
 [[bench]]
 name = "bench_field"
