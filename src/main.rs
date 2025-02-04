@@ -1,7 +1,7 @@
 use ark_bls12_377::Bls12_377;
 pub use ark_bls12_377::Fr as FF_Bls12_377Fr;
-use ark_ff::{BigInteger, Field as OtherField, UniformRand};
-use halo2curves::ff::{Field, PrimeField};
+use ark_ff::{BigInteger, Field as OtherField, PrimeField, UniformRand};
+use halo2curves::ff::{Field, PrimeField as OtherPrimeField};
 use rand::distributions::Standard;
 use rand::SeedableRng;
 use rand::{thread_rng, Rng};
@@ -39,24 +39,30 @@ fn main() {
 
 fn f2(a: halo2curves::bls12381::Fr) {
     let mut b = a.clone();
-    for _ in 0..1000000i64 {
+    for i in 0..1000000i64 {
         b.pow(&[1 << 5u64]);
-        b = (b + a) * a;
+        b = (b + a) * halo2curves::bls12381::Fr::from_u128(i as u128);
     }
 }
 
 fn f1(a: FF_Bls12_377Fr) {
     let mut b: FF_Bls12_377Fr = a.clone();
-    for i in 0..1000000i64 {
+    for i in 0..1_000_000i64 {
         b = b.pow(&[1 << 5u64]);
-        b = (b + a) * a;
+        b = (b + a) * FF_Bls12_377Fr::from(i);
     }
+    println!("{:?}", hex::encode(b.into_bigint().to_bytes_le().as_slice()))
 }
 
 fn f3(a: Fr) {
     let mut b = a.clone();
-    for i in 0..1000000i64 {
-        b = a.mul32();
-        b = (b + a) * a;
+    for i in 0..1_000_000i64 {
+        b = b * b;
+        b = b * b;
+        b = b * b;
+        b = b * b;
+        b = b * b;
+        b = (b + a) * Fr::from_i64(i);
     }
+    println!("{:?}", hex::encode(b.encode32()))
 }
