@@ -6,9 +6,10 @@ edition = "2021"
 [dependencies]
 ark-ff = { git = "https://github.com/distributed-lab/algebra.git", branch = "master" }
 ark-bls12-377 = { git = "https://github.com/distributed-lab/algebra.git", branch = "master" }
+ark-bls12-381 = { git = "https://github.com/distributed-lab/algebra.git", branch = "master" }
 criterion = "0.5.1"
 rand = "0.8.5"
-halo2curves = "0.8.0"
+halo2curves = { git = "https://github.com/distributed-lab/halo2curves.git", branch = "feature/bls12-377" }
 rand_xorshift = "0.3"
 crrl = {version = "0.9.0", features = ["modint256"]}
 hex = "0.4.3"
@@ -16,6 +17,3 @@ hex = "0.4.3"
 [[bench]]
 name = "bench_field"
 harness = false
-
-[features]
-asm = ["halo2curves/asm", "ark-ff/asm", "ark-bls12-377/asm", "crrl/gfb254_x86clmul"]
