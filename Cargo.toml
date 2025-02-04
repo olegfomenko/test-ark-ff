@@ -1,0 +1,12 @@
+[package]
+name = "test-ark-ff"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ark-ff = { git = "https://github.com/distributed-lab/algebra.git", branch = "master"}
+criterion = "0.5.1"
+
+[[bench]]
+name = "bench_field"
+harness = false
