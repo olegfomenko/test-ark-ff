@@ -16,4 +16,4 @@ name = "bench_field"
 harness = false
 
 [features]
-asm = ["halo2curves/asm"]
+asm = ["halo2curves/asm", "ark-ff/asm", "ark-bls12-377/asm"]
